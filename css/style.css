@@ -149,18 +149,46 @@ main {
   width: calc(100% - 35%);
   height: 100%;
 }
-#chat .section_header  h4 {
+#chat .section_header h4 {
   font-size: 1em;
   font-weight: 400;
 }
 
 .conversation {
+  display: flex;
+  flex-direction: column;
   height: calc(100% - 55px - 50px);
+  padding: 40px 60px;
   background-image: url(../img/mine.jpg);
   background-position: left;
   background-size: 400px;
   overflow-y: scroll;
 }
+.msg {
+  display: inline-block;
+  min-width: 40%;
+  padding-top: 10px;
+  padding-left: 15px;
+  margin: 5px 0;
+  border-radius: 10px;
+  font-size: 0.9em;
+}
+.msg_time {
+  display: block;
+  margin: 5px;
+  text-align: right;
+  font-size: 0.7em;
+  color: #b1b1b1;
+}
+.sent {
+  background-color: #d5f9ba;
+  align-self: flex-end;
+}
+.received {
+  align-self: flex-start;
+  background-color: #fff;
+}
+
 .write_msg {
   height: 50px;
   background-color: #f3eeea;
