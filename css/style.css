@@ -45,12 +45,14 @@ main {
   border-right: 1px solid #d9d9d9;
 }
 
-#contact .section_header {
+#contact .section_header,
+#chat .section_header {
   display: flex;
   align-items: center;
   padding: 5px 10px;
 }
-#contact .section_header > img {
+#contact .section_header > img,
+#chat .section_header > img {
   height: 90%;
   border-radius: 50%;
   cursor: pointer;
@@ -60,7 +62,8 @@ main {
   font-size: 0.8em;
   flex-grow: 1;
 }
-#contact .section_header > i {
+#contact .section_header > i,
+#chat .section_header > i {
   margin: 0 7px;
   color: #b1b1b1;
   cursor: pointer;
@@ -108,12 +111,12 @@ main {
 
 .people {
   height: calc(100% - 55px - 60px - 35px);
-  overflow-y:scroll;
+  overflow-y: scroll;
 }
 .people .contact_chat {
   display: flex;
   height: 65px;
-  padding: 7px;
+  padding: 7px 10px;
   border-top: 1px solid #e9ebeb;
 }
 .contact_chat.active {
@@ -121,18 +124,20 @@ main {
 }
 .contact_chat > img {
   height: 100%;
-  margin: auto 10px;
+  margin: auto 0;
   border-radius: 50%;
   cursor: pointer;
 }
 .contact_chat_user {
   flex-grow: 1;
+  margin-left: 10px;
 }
 .contact_chat h4 {
   font-size: 1.1em;
   font-weight: 400;
 }
-.contact_chat p {
+.contact_chat p,
+#chat .section_header p {
   font-size: 0.8em;
   color: #444444;
 }
@@ -144,6 +149,11 @@ main {
   width: calc(100% - 35%);
   height: 100%;
 }
+#chat .section_header  h4 {
+  font-size: 1em;
+  font-weight: 400;
+}
+
 .conversation {
   height: calc(100% - 55px - 50px);
   background-image: url(../img/mine.jpg);
