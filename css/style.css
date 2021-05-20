@@ -114,10 +114,10 @@ main {
   width: 100%;
   padding: 5px 10px;
   border: 1px solid #e9ebeb;
-  background-color: transparent;
 }
 .search > input {
   padding-left: calc(16px + 40px);
+  background-color: transparent;
 }
 .search > input:focus,
 .write_msg input:focus {
