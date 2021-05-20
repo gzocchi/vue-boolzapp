@@ -105,6 +105,7 @@ main {
   position: relative;
   height: 45px;
   padding: 5px;
+  z-index: 1;
 }
 
 .search > input,
@@ -113,6 +114,7 @@ main {
   width: 100%;
   padding: 5px 10px;
   border: 1px solid #e9ebeb;
+  background-color: transparent;
 }
 .search > input {
   padding-left: calc(16px + 40px);
@@ -128,6 +130,7 @@ main {
   top: 50%;
   transform: translateY(-50%);
   color: #b1b1b1;
+  z-index: -1;
 }
 
 .people {
