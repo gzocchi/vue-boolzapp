@@ -46,7 +46,8 @@ main {
 }
 
 #contact .section_header,
-#chat .section_header {
+#chat .section_header,
+.write_msg {
   display: flex;
   align-items: center;
   padding: 5px 10px;
@@ -104,9 +105,15 @@ main {
   height: 35px;
   padding: 5px;
 }
-.search > input {
+.search > input,
+.write_msg input {
   height: 100%;
   width: 100%;
+  padding: 5px 10px;
+}
+.search > input::placeholder,
+.write_msg input::placeholder {
+  padding: 5px 10px;
 }
 
 .people {
@@ -192,4 +199,9 @@ main {
 .write_msg {
   height: 50px;
   background-color: #f3eeea;
+}
+.write_msg > i {
+  margin: 0 20px;
+  color: #6b7376;
+  cursor: pointer;
 }
