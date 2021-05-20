@@ -102,18 +102,32 @@ main {
 }
 
 .search {
+  position: relative;
   height: 35px;
   padding: 5px;
 }
+
 .search > input,
 .write_msg input {
   height: 100%;
   width: 100%;
   padding: 5px 10px;
+  border: 1px solid #e9ebeb;
 }
-.search > input::placeholder,
-.write_msg input::placeholder {
-  padding: 5px 10px;
+.search > input {
+  padding-left: calc(16px + 40px);
+}
+.search > input:focus,
+.write_msg input:focus {
+  outline: none;
+}
+
+.search > i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b1b1b1;
 }
 
 .people {
