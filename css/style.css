@@ -61,9 +61,9 @@ main {
   flex-grow: 1;
 }
 #contact .section_header > i {
-    margin: 0 7px;
-    color: #B1B1B1;
-    cursor: pointer;
+  margin: 0 7px;
+  color: #b1b1b1;
+  cursor: pointer;
 }
 
 .notice {
@@ -73,27 +73,28 @@ main {
   padding: 10px 15px;
   background-color: #8edafc;
 }
-.notice > .bell{
-    display: flex;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-    border-radius: 50%;
-    background-color: #fff;
+.notice > .bell {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
 }
-.notice i{
-    margin: auto;
-    font-size: 1.3em;
-    color: #8edafc;
+.notice i {
+  margin: auto;
+  font-size: 1.3em;
+  color: #8edafc;
 }
-.notice .notice_title h3{
-    font-size: 0.8em;
-    font-weight: 400;
+.notice .notice_title h3 {
+  font-size: 0.8em;
+  font-weight: 400;
 }
 .notice .notice_title a {
-    font-size: 0.7em;
-    text-decoration:underline;
-    color: #444444;
+  font-size: 0.7em;
+  text-decoration: underline;
+  color: #444444;
 }
 
 .search {
@@ -107,7 +108,33 @@ main {
 
 .people {
   height: calc(100% - 55px - 60px - 35px);
-  overflow: auto;
+  overflow-y:scroll;
+}
+.people .contact_chat {
+  display: flex;
+  height: 65px;
+  padding: 7px;
+  border-top: 1px solid #e9ebeb;
+}
+.contact_chat.active {
+  background-color: #e9ebeb;
+}
+.contact_chat > img {
+  height: 100%;
+  margin: auto 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.contact_chat_user {
+  flex-grow: 1;
+}
+.contact_chat h4 {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.contact_chat p {
+  font-size: 0.8em;
+  color: #444444;
 }
 
 /* chat */
@@ -122,7 +149,7 @@ main {
   background-image: url(../img/mine.jpg);
   background-position: left;
   background-size: 400px;
-  overflow: auto;
+  overflow-y: scroll;
 }
 .write_msg {
   height: 50px;
