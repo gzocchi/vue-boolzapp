@@ -55,7 +55,7 @@ main {
   border-radius: 50%;
   cursor: pointer;
 }
-#contact .section_header > h3 {
+#contact .section_header > h2 {
   margin-left: 7px;
   font-size: 0.8em;
   flex-grow: 1;
@@ -68,8 +68,34 @@ main {
 
 .notice {
   height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
   background-color: #8edafc;
 }
+.notice > .bell{
+    display: flex;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.notice i{
+    margin: auto;
+    font-size: 1.3em;
+    color: #8edafc;
+}
+.notice .notice_title h3{
+    font-size: 0.8em;
+    font-weight: 400;
+}
+.notice .notice_title a {
+    font-size: 0.7em;
+    text-decoration:underline;
+    color: #444444;
+}
+
 .search {
   height: 35px;
   padding: 5px;
