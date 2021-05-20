@@ -103,7 +103,7 @@ main {
 
 .search {
   position: relative;
-  height: 35px;
+  height: 45px;
   padding: 5px;
 }
 
@@ -139,6 +139,7 @@ main {
   height: 65px;
   padding: 7px 10px;
   border-top: 1px solid #e9ebeb;
+  cursor: pointer;
 }
 .contact_chat.active {
   background-color: #e9ebeb;
@@ -147,7 +148,7 @@ main {
   height: 100%;
   margin: auto 0;
   border-radius: 50%;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .contact_chat_user {
   flex-grow: 1;
