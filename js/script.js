@@ -116,11 +116,17 @@ var app = new Vue({
     getCurrentDate: function () {
       return  dayjs().format("DD/MM/YYYY HH:mm:ss");
     },
-    resetMessage: function() {
-      this.newMessage = "";
-    },
     checkMessage: function (str) {
       return str.trim().length > 0
+    },
+    saveDraft: function () {
+      this.checkMessage(this.newMessage) ? this.contacts[this.currentContact].draft = this.newMessage : this.resetMessage();
+    },
+    restoreDraft: function () {
+      this.contacts[this.currentContact].draft.length > 0 ? this.newMessage = this.contacts[this.currentContact].draft : "";
+    },
+    resetMessage: function() {
+      this.newMessage = "";
     },
     messageComposer: function (sender) {
       let date = this.getCurrentDate();
@@ -128,10 +134,10 @@ var app = new Vue({
       let status = sender;
       let newObj = { date, text, status };
       this.contacts[this.currentContact].messages.push(newObj);
-      this.newMessage = "";
+      this.resetMessage();
     },
-    writeMessage: function (sender) {
-      this.checkMessage(this.newMessage) ? this.messageComposer(sender) : this.newMessage = "";
+    sendMessage: function (sender) {
+      this.checkMessage(this.newMessage) ? this.messageComposer(sender) : this.resetMessage();
     }
   },
 });
