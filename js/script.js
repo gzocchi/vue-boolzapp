@@ -92,6 +92,7 @@ var app = new Vue({
       },
     ],
     currentContact: 0,
+    newMessage: "",
   },
   methods: {
     setCurrentContact: function (contactIndex) {
@@ -112,5 +113,25 @@ var app = new Vue({
       let message = this.contacts[contactIndex].messages;
       return message[message.length - 1].date;
     },
+    getCurrentDate: function () {
+      return  dayjs().format("DD/MM/YYYY HH:mm:ss");
+    },
+    resetMessage: function() {
+      this.newMessage = "";
+    },
+    checkMessage: function (str) {
+      return str.trim().length > 0
+    },
+    messageComposer: function (sender) {
+      let date = this.getCurrentDate();
+      let text = this.newMessage;
+      let status = sender;
+      let newObj = { date, text, status };
+      this.contacts[this.currentContact].messages.push(newObj);
+      this.newMessage = "";
+    },
+    writeMessage: function (sender) {
+      this.checkMessage(this.newMessage) ? this.messageComposer(sender) : this.newMessage = "";
+    }
   },
 });
