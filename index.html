@@ -92,7 +92,8 @@
         <!-- /sezione sinistra con contatti personali -->
 
         <!-- sezione destra con chat -->
-        <section id="chat">
+        <section v-if="currentContact === false" id="chat_start"></section>
+        <section v-else id="chat">
 
             <!-- header contatto chat con icone -->
             <header class="section_header">

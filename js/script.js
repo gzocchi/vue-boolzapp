@@ -91,7 +91,7 @@ var app = new Vue({
         ],
       },
     ],
-    currentContact: 0,
+    currentContact: false,
     newMessage: "",
   },
   methods: {

@@ -172,6 +172,13 @@ main {
 }
 
 /* chat */
+#chat_start{
+  background-color: #F8F9FA;
+  background-image: url(../img/chat_start.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#chat_start,
 #chat {
   display: flex;
   flex-direction: column;
