@@ -1,6 +1,11 @@
 var app = new Vue({
   el: "#root",
   data: {
+    user: {
+      name: "Giorgio",
+      avatar: "_8",
+      visible: true,
+    },
     contacts: [
       {
         name: "Michele",
@@ -70,7 +75,7 @@ var app = new Vue({
       },
       {
         name: "Luisa",
-        avatar: "_4",
+        avatar: "_6",
         visible: true,
         messages: [
           {
@@ -86,5 +91,26 @@ var app = new Vue({
         ],
       },
     ],
+    currentContact: 0,
+  },
+  methods: {
+    setCurrentContact: function (contactIndex) {
+      this.currentContact = contactIndex;
+    },
+    getContactImage: function () {
+      return `img/avatar${this.contacts[this.currentContact].avatar}.jpg`;
+    },
+    getObjImage: function (obj) {
+      return `img/avatar${obj.avatar}.jpg`;
+    },
+    getLastMessageText: function (contactIndex) {
+      let message = this.contacts[contactIndex].messages;
+      let lastMessage = message[message.length - 1].text.substring(0, 30);
+      return `${lastMessage} ...`;
+    },
+    getLastMessageData: function (contactIndex) {
+      let message = this.contacts[contactIndex].messages;
+      return message[message.length - 1].date;
+    },
   },
 });

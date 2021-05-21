@@ -147,6 +147,10 @@ main {
 .contact_chat.active {
   background-color: #e9ebeb;
 }
+.contact_chat:not(.active):hover{
+  background-color: #f2f3f3;
+}
+
 .contact_chat > img {
   height: 100%;
   margin: auto 0;
@@ -192,15 +196,14 @@ main {
 .msg {
   display: inline-block;
   min-width: 40%;
-  padding-top: 10px;
-  padding-left: 15px;
+  padding: 10px 10px 0 15px;
   margin: 5px 0;
   border-radius: 10px;
   font-size: 0.9em;
 }
 .msg_time {
   display: block;
-  margin: 5px;
+  margin: 5px 0;
   text-align: right;
   font-size: 0.7em;
   color: #b1b1b1;

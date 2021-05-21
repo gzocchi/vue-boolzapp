@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- dayjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
+        integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
@@ -25,7 +29,7 @@
     <header id="green_header"></header>
 
     <!-- sezione centrale pagina -->
-    <main>
+    <main id="root">
 
         <!-- sezione sinistra con contatti personali -->
         <section id="contact">
@@ -33,8 +37,8 @@
             <!-- header utente con icone -->
             <header class="section_header">
 
-                <img src="img/avatar_io.jpg" alt="Utente">
-                <h2>Nome Utente</h2>
+                <img :src="getObjImage(user)" :alt="user.name">
+                <h2>{{ user.name }}</h2>
                 <i class="fas fa-circle-notch"></i>
                 <i class="fas fa-comment-alt"></i>
                 <i class="fas fa-ellipsis-v"></i>
@@ -50,7 +54,7 @@
 
                 <div class="notice_title">
                     <h3>Ricevi notifiche di nuovi messaggi</h3>
-                    <a href="http://">Attiva notifiche desktop</a>
+                    <a href="#">Attiva notifiche desktop</a>
                 </div>
 
             </div>
@@ -64,61 +68,20 @@
             <!-- sezione contenente contatti -->
             <div class="people">
 
-                <div class="contact_chat active">
+                <div v-for="(contact, index) in contacts"
+                    @click="setCurrentContact(index)"
+                    :class="{'active' : index === currentContact}"
+                    class="contact_chat">
 
-                    <img src="img/avatar_1.jpg" alt="Avatar Michele">
+                    <img :src="getObjImage(contact)" :alt="contact.name">
 
                     <div class="contact_chat_user">
-                        <h4>Michele</h4>
-                        <p>Tutto fatto! ...</p>
+                        <h4>{{ contact.name }}</h4>
+                        <p>{{ getLastMessageText(index) }}</p>
                     </div>
 
                     <div>
-                        <p>10/01/2020 16:15:22</p>
-                    </div>
-
-                </div>
-
-                <div class="contact_chat">
-
-                    <img src="img/avatar_2.jpg" alt="Avatar Fabio">
-
-                    <div class="contact_chat_user">
-                        <h4>Fabio</h4>
-                        <p>Mi piacerebbe ma devo andare a ...</p>
-                    </div>
-
-                    <div>
-                        <p>20/03/2020 16:35:00</p>
-                    </div>
-
-                </div>
-
-                <div class="contact_chat">
-
-                    <img src="img/avatar_3.jpg" alt="Avatar Samuele">
-
-                    <div class="contact_chat_user">
-                        <h4>Samuele</h4>
-                        <p>Ah scusa! ...</p>
-                    </div>
-
-                    <div>
-                        <p>28/03/2020 16:15:22</p>
-                    </div>
-
-                </div>
-                <div class="contact_chat">
-
-                    <img src="img/avatar_6.jpg" alt="Avatar Luisa">
-
-                    <div class="contact_chat_user">
-                        <h4>Luisa</h4>
-                        <p>Si, ma preferirei andare al ci ...</p>
-                    </div>
-
-                    <div>
-                        <p>10/01/2020 15:50:00</p>
+                        <p>{{ getLastMessageData(index) }}</p>
                     </div>
 
                 </div>
@@ -134,10 +97,10 @@
             <!-- header contatto chat con icone -->
             <header class="section_header">
 
-                <img src="img/avatar_1.jpg" alt="Avatar Michele">
+                <img :src="getContactImage()" :alt="contacts[currentContact].name">
                 <div class="contact_chat_user">
-                    <h4>Michele</h4>
-                    <p>Ultimo accesso oggi alle 10/01/2020 16:15:22</p>
+                    <h4>{{ contacts[currentContact].name }}</h4>
+                    <p>Ultimo accesso oggi alle <span>{{ getLastMessageData(currentContact) }}</span></p>
                 </div>
                 <i class="fas fa-search"></i>
                 <i class="fas fa-paperclip"></i>
@@ -148,18 +111,11 @@
             <!-- sezione centrale con storia chat -->
             <div class="conversation">
 
-                <div class="msg sent">
-                    <p>Hai portato a spasso il cane?</p>
-                    <span class="msg_time">10/01/2020 15:30:55</span>
-                </div>
-                <div class="msg sent">
-                    <p>Ricordati di dargli da mangiare</p>
-                    <span class="msg_time">10/01/2020 15:50:00</span>
-                </div>
-
-                <div class="msg received">
-                    <p>Tutto fatto!</p>
-                    <span class="msg_time">10/01/2020 16:15:22</span>
+                <div v-for="message in contacts[currentContact].messages"
+                     :class="message.status == 'sent' ? 'sent' : 'received'"
+                     class="msg">
+                    <p>{{ message.text }}</p>
+                    <span class="msg_time">{{ message.date }}</span>
                 </div>
 
             </div>
@@ -176,7 +132,7 @@
 
     </main>
 
-    <!-- <script src="js/script.js"></script> -->
+    <script src="js/script.js"></script>
 </body>
 
 </html>
