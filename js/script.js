@@ -144,6 +144,18 @@ var app = new Vue({
     },
     sendMessage: function (sender) {
       this.checkMessage(this.newMessage) ? this.messageComposer(sender) : this.resetMessage();
-    }
+      this.orderMessage();
+      this.currentContact = 0;
+    },
+    orderMessage: function () {
+      let contact = this.contacts[this.currentContact];
+      this.contacts.splice(this.currentContact, 1);
+      this.contacts.splice(0,0,contact);
+    },
   },
+  created: function () {
+    this.contacts.forEach(element => {
+      element.draft = "";
+    });
+  }
 });
