@@ -105,9 +105,15 @@ var app = new Vue({
       return `img/avatar${obj.avatar}.jpg`;
     },
     getLastMessageText: function (contactIndex) {
-      let message = this.contacts[contactIndex].messages;
-      let lastMessage = message[message.length - 1].text.substring(0, 30);
-      return `${lastMessage} ...`;
+      // let message = this.contacts[contactIndex].messages;
+      // let lastMessage = message[message.length - 1].text.substring(0, 30);
+      // return `${lastMessage} ...`;
+      let lastMessage = this.contacts[contactIndex].messages[this.contacts[contactIndex].messages.length - 1].text;
+      if (lastMessage.length > 30) {
+        return `${lastMessage.substring(0, 30)} ...`;
+      } else {
+        return `${lastMessage}`;
+      };
     },
     getLastMessageData: function (contactIndex) {
       let message = this.contacts[contactIndex].messages;
