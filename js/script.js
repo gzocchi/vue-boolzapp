@@ -143,9 +143,12 @@ var app = new Vue({
       this.resetMessage();
     },
     sendMessage: function (sender) {
-      this.checkMessage(this.newMessage) ? this.messageComposer(sender) : this.resetMessage();
+    // this.checkMessage(this.newMessage) ? this.messageComposer(sender) : this.resetMessage();
+    if (this.checkMessage(this.newMessage)) {
+      this.messageComposer(sender)
       this.orderMessage();
       this.currentContact = 0;
+    } else {this.resetMessage()}
     },
     orderMessage: function () {
       let contact = this.contacts[this.currentContact];
