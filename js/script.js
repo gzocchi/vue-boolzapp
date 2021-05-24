@@ -175,12 +175,19 @@ var app = new Vue({
         if (sender == "sent") {
           const app = this;
           setTimeout(function () {
-            app.messageComposer("received", "Ok!")
+            app.autoAnswer()
           }, 1000);
         };
       } else {
         this.resetMessage();
       }
+    },
+    autoAnswer: function () {
+      const answers = ["Ok!", "Ciao", "Si", "No", "Grazie", "Come stai?", "Ti chiamo dopo"]
+      this.messageComposer("received", answers[this.randomNumber(0, answers.length - 1)]);
+    },
+    randomNumber: function (min = 0, max = 9) {
+      return Math.floor(Math.random() * (max - min + 1) ) + min;
     },
     orderMessage: function () {
       let contact = this.contacts[this.currentContact];
