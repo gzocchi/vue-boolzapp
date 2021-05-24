@@ -144,10 +144,13 @@ main {
   border-top: 1px solid #e9ebeb;
   cursor: pointer;
 }
+.search {
+  align-items: center;
+}
 .contact_chat.active {
   background-color: #e9ebeb;
 }
-.contact_chat:not(.active):hover{
+.contact_chat:not(.active):hover {
   background-color: #f2f3f3;
 }
 
@@ -172,8 +175,8 @@ main {
 }
 
 /* chat */
-#chat_start{
-  background-color: #F8F9FA;
+#chat_start {
+  background-color: #f8f9fa;
   background-image: url(../img/chat_start.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -194,7 +197,7 @@ main {
   display: flex;
   flex-direction: column;
   height: calc(100% - 55px - 50px);
-  padding: 40px 60px;
+  padding: 40px 60px 10px;
   background-image: url(../img/mine.jpg);
   background-position: left;
   background-size: 400px;

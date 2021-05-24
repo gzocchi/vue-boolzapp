@@ -90,9 +90,35 @@ var app = new Vue({
           },
         ],
       },
+      {
+        name: "Giovanni",
+        avatar: "_4",
+        visible: false,
+        messages: [],
+      },
+      {
+        name: "Francesco",
+        avatar: "_5",
+        visible: false,
+        messages: [],
+      },
+      {
+        name: "Antonio",
+        avatar: "_7",
+        visible: false,
+        messages: [],
+      },
+      {
+        name: "Laura",
+        avatar: "_io",
+        visible: false,
+        messages: [],
+      },
     ],
     currentContact: false,
     newMessage: "",
+    searchContact: [],
+    search: "",
   },
   methods: {
     setCurrentContact: function (contactIndex) {
@@ -105,60 +131,78 @@ var app = new Vue({
       return `img/avatar${obj.avatar}.jpg`;
     },
     getLastMessageText: function (contactIndex) {
-      // let message = this.contacts[contactIndex].messages;
-      // let lastMessage = message[message.length - 1].text.substring(0, 30);
-      // return `${lastMessage} ...`;
       let lastMessage = this.contacts[contactIndex].messages[this.contacts[contactIndex].messages.length - 1].text;
       if (lastMessage.length > 30) {
         return `${lastMessage.substring(0, 30)} ...`;
       } else {
         return `${lastMessage}`;
-      };
+      }
     },
     getLastMessageData: function (contactIndex) {
       let message = this.contacts[contactIndex].messages;
       return message[message.length - 1].date;
     },
     getCurrentDate: function () {
-      return  dayjs().format("DD/MM/YYYY HH:mm:ss");
+      return dayjs().format("DD/MM/YYYY HH:mm:ss");
     },
     checkMessage: function (str) {
-      return str.trim().length > 0
+      return str.trim().length > 0;
     },
     saveDraft: function () {
-      this.checkMessage(this.newMessage) ? this.contacts[this.currentContact].draft = this.newMessage : this.resetMessage();
+      this.checkMessage(this.newMessage) ? (this.contacts[this.currentContact].draft = this.newMessage) : this.resetMessage();
     },
     restoreDraft: function () {
-      this.contacts[this.currentContact].draft.length > 0 ? this.newMessage = this.contacts[this.currentContact].draft : "";
+      this.contacts[this.currentContact].draft.length > 0 ? (this.newMessage = this.contacts[this.currentContact].draft) : "";
     },
-    resetMessage: function() {
+    resetMessage: function () {
       this.newMessage = "";
     },
-    messageComposer: function (sender) {
+    messageComposer: function (sender, text = this.newMessage) {
       let date = this.getCurrentDate();
-      let text = this.newMessage;
+      // let text = this.newMessage;
       let status = sender;
       let newObj = { date, text, status };
       this.contacts[this.currentContact].messages.push(newObj);
       this.resetMessage();
     },
     sendMessage: function (sender) {
-    // this.checkMessage(this.newMessage) ? this.messageComposer(sender) : this.resetMessage();
-    if (this.checkMessage(this.newMessage)) {
-      this.messageComposer(sender)
-      this.orderMessage();
-      this.currentContact = 0;
-    } else {this.resetMessage()}
+      if (this.checkMessage(this.newMessage)) {
+        this.messageComposer(sender);
+        this.orderMessage();
+        this.currentContact = 0;
+        this.contacts[this.currentContact].visible = true;
+        this.search != '' ? this.search = '' : '';
+        this.searchContact = [];
+        if (sender == "sent") {
+          setTimeout(this.messageComposer("received", "Ok!"), 1000);
+        };
+      } else {
+        this.resetMessage();
+      }
     },
     orderMessage: function () {
       let contact = this.contacts[this.currentContact];
       this.contacts.splice(this.currentContact, 1);
-      this.contacts.splice(0,0,contact);
+      this.contacts.splice(0, 0, contact);
     },
+    contactSearch: function () {
+      this.contacts.forEach((element,index) => {
+      let {name, avatar} = element;
+      let search = this.search.toLowerCase();
+        if (name.charAt(0).toLowerCase() == search) {
+          this.searchContact.push([index, {name, avatar}]);
+        }
+        // if (name.toLowerCase().includes(search)) {
+        //   this.searchContact.push([index, {name, avatar}]);
+        // }
+      });
+      
+        console.log(this.searchContact);
+    }
   },
   created: function () {
-    this.contacts.forEach(element => {
+    this.contacts.forEach((element) => {
       element.draft = "";
     });
-  }
+    },
 });
