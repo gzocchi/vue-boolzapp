@@ -91,25 +91,25 @@ var app = new Vue({
         ],
       },
       {
-        name: "Giovanni",
+        name: "Marco",
         avatar: "_4",
         visible: false,
         messages: [],
       },
       {
-        name: "Francesco",
+        name: "Mauro",
         avatar: "_5",
         visible: false,
         messages: [],
       },
       {
-        name: "Antonio",
+        name: "Marcello",
         avatar: "_7",
         visible: false,
         messages: [],
       },
       {
-        name: "Laura",
+        name: "Mara",
         avatar: "_io",
         visible: false,
         messages: [],
@@ -171,10 +171,10 @@ var app = new Vue({
         this.orderMessage();
         this.currentContact = 0;
         this.contacts[this.currentContact].visible = true;
-        this.search != '' ? this.search = '' : '';
-        this.searchContact = [];
+        this.resetSearch();
         if (sender == "sent") {
           setTimeout(this.messageComposer("received", "Ok!"), 1000);
+          console.log(this);
         };
       } else {
         this.resetMessage();
@@ -186,19 +186,19 @@ var app = new Vue({
       this.contacts.splice(0, 0, contact);
     },
     contactSearch: function () {
-      this.contacts.forEach((element,index) => {
-      let {name, avatar} = element;
       let search = this.search.toLowerCase();
-        if (name.charAt(0).toLowerCase() == search) {
+      this.searchContact = [];
+      this.contacts.forEach((element, index) => {
+      let {name, avatar} = element;
+        if (name.toLowerCase().includes(search)) {
           this.searchContact.push([index, {name, avatar}]);
         }
-        // if (name.toLowerCase().includes(search)) {
-        //   this.searchContact.push([index, {name, avatar}]);
-        // }
       });
-      
-        console.log(this.searchContact);
-    }
+    },
+    resetSearch: function () {
+      this.searchContact = [];
+      this.search != '' ? this.search = '' : '';
+    },
   },
   created: function () {
     this.contacts.forEach((element) => {
