@@ -173,8 +173,10 @@ var app = new Vue({
         this.contacts[this.currentContact].visible = true;
         this.resetSearch();
         if (sender == "sent") {
-          setTimeout(this.messageComposer("received", "Ok!"), 1000);
-          console.log(this);
+          const app = this;
+          setTimeout(function () {
+            app.messageComposer("received", "Ok!")
+          }, 1000);
         };
       } else {
         this.resetMessage();
