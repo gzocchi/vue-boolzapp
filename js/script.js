@@ -225,9 +225,86 @@ var app = new Vue({
     }
   },
   created: function () {
+    let newContacts = [
+      "Alice",
+      "Achille",
+      "Alessandro",
+      "Ada",
+      "Bruno",
+      "Barbara",
+      "Camilla",
+      "Carlo",
+      "Dario",
+      "Daniele",
+      "Davide",
+      "Dafne",
+      "Ettore",
+      "Elena",
+      "Fabiana",
+      "Franco",
+      "Gerardo",
+      "Gabriella",
+      "Irene",
+      "Iacopo",
+      "Ida",
+      "Ignazio",
+      "Jack",
+      "Jacopo",
+      "Karen",
+      "Lara",
+      "Laura",
+      "Luigi",
+      "Luigina",
+      "Mafalda",
+      "Martina",
+      "Matteo",
+      "Nadia",
+      "Naomi",
+      "Oscar",
+      "Orazio",
+      "Olga",
+      "Paola",
+      "Paolo",
+      "Palmira",
+      "Rachele",
+      "Raffaele",
+      "Sabrina",
+      "Sandro",
+      "Sergio",
+      "Tamara",
+      "Tommaso",
+      "Teo",
+      "Tiziana",
+      "Ugo",
+      "Ubaldo",
+      "Umberto",
+      "Valentina",
+      "Vito",
+      "Veronica",
+      "Vittorio",
+      "Valter",
+      "Wanda",
+      "Yara",
+      "Yuri",
+      "Zeno",
+      "Zoe",
+      "Zaira"
+    ]
+    newContacts.forEach((element) => {
+      this.contacts.push(
+        {
+          name: element,
+          avatar: "_default",
+          visible: false,
+          messages: [],
+        },
+      )
+    });
+
     this.contacts.forEach((element) => {
       element.draft = "";
     });
+
     },
   updated: function () {
     this.windowScroll();
