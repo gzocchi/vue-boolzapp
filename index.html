@@ -125,7 +125,7 @@
             </header>
 
             <!-- sezione centrale con chat -->
-            <div class="conversation">
+            <div class="conversation" id="conversation_scroll">
 
                 <div v-for="message in contacts[currentContact].messages"
                     :class="message.status" class="msg">

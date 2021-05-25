@@ -216,10 +216,16 @@ var app = new Vue({
       this.searchContact = [];
       this.search != '' ? this.search = '' : '';
     },
+    windowScroll: function () {
+      document.getElementById("conversation_scroll").scrollTo(0,document.getElementById("conversation_scroll").scrollHeight);
+    }
   },
   created: function () {
     this.contacts.forEach((element) => {
       element.draft = "";
     });
     },
+  updated: function () {
+    this.windowScroll();
+  },
 });
