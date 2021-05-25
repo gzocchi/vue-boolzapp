@@ -145,11 +145,11 @@ var app = new Vue({
     getCurrentDate: function () {
       return dayjs().format("DD/MM/YYYY HH:mm:ss");
     },
-    checkMessage: function (str) {
+    checkString: function (str) {
       return str.trim().length > 0;
     },
     saveDraft: function () {
-      this.checkMessage(this.newMessage) ? (this.contacts[this.currentContact].draft = this.newMessage) : this.resetMessage();
+      this.checkString(this.newMessage) ? (this.contacts[this.currentContact].draft = this.newMessage) : this.resetMessage();
     },
     restoreDraft: function () {
       this.contacts[this.currentContact].draft.length > 0 ? (this.newMessage = this.contacts[this.currentContact].draft) : "";
@@ -166,7 +166,7 @@ var app = new Vue({
       this.resetMessage();
     },
     sendMessage: function (sender) {
-      if (this.checkMessage(this.newMessage)) {
+      if (this.checkString(this.newMessage)) {
         this.messageComposer(sender);
         this.orderMessage();
         this.currentContact = 0;
@@ -195,7 +195,7 @@ var app = new Vue({
       this.contacts.splice(0, 0, contact);
     },
     contactSearch: function () {
-      let search = this.search.toLowerCase();
+      let search = this.search.toLowerCase().trim();
       this.searchContact = [];
       this.contacts.forEach((element, index) => {
       let {name, avatar} = element;

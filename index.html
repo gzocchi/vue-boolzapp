@@ -66,7 +66,7 @@
             </div>
 
             <!-- sezione contenente contatti -->
-            <div class="people" v-if="search == ''">
+            <div class="people" v-if="!checkString(this.search)">
 
                 <div v-for="(contact, index) in contacts" v-if="contact.visible"
                     @click="saveDraft(), resetMessage(), resetSearch(), setCurrentContact(index), restoreDraft()"
