@@ -177,9 +177,13 @@ var app = new Vue({
     sendMessage: function (sender) {
       if (this.checkString(this.newMessage)) {
         this.messageComposer(sender);
-        this.orderMessage();
-        this.currentContact = 0;
-        this.contacts[this.currentContact].visible = true;
+        if (this.currentContact > 0) {
+          this.orderMessage();
+          this.currentContact = 0;
+        };
+        if (!this.contacts[this.currentContact].visible) {
+          this.contacts[this.currentContact].visible = true;
+        };
         this.resetSearch();
         if (sender == "sent") {
           const app = this;
