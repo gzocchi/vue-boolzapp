@@ -132,8 +132,8 @@ var app = new Vue({
     },
     getLastMessageText: function (contactIndex) {
       let lastMessage = this.contacts[contactIndex].messages[this.contacts[contactIndex].messages.length - 1].text;
-      if (lastMessage.length > 30) {
-        return `${lastMessage.substring(0, 30)} ...`;
+      if (lastMessage.length > 25) {
+        return `${lastMessage.substring(0, 25)} ...`;
       } else {
         return `${lastMessage}`;
       }
