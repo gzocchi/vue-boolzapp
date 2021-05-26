@@ -172,6 +172,9 @@ var app = new Vue({
       let status = sender;
       let newObj = { date, text, status };
       this.contacts[this.currentContact].messages.push(newObj);
+      Vue.nextTick(function () {
+        app.windowScroll();
+      })
       this.resetMessage();
     },
     sendMessage: function (sender) {
@@ -186,7 +189,6 @@ var app = new Vue({
         };
         this.resetSearch();
         if (sender == "sent") {
-          const app = this;
           setTimeout(function () {
             app.autoAnswer()
           }, 1000);
@@ -210,10 +212,10 @@ var app = new Vue({
       let search = this.search.toLowerCase().trim();
       this.searchContact = [];
       this.contacts.forEach((element, index) => {
-      let {name, avatar} = element;
-        if (name.toLowerCase().includes(search)) {
-          this.searchContact.push([index, {name, avatar}]);
-        }
+        let {name, avatar} = element;
+          if (name.toLowerCase().includes(search)) {
+            this.searchContact.push([index, {name, avatar}]);
+          }
       });
     },
     resetSearch: function () {
@@ -306,7 +308,4 @@ var app = new Vue({
     });
 
     },
-  updated: function () {
-    this.windowScroll();
-  },
 });
