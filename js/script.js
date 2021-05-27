@@ -172,9 +172,7 @@ var app = new Vue({
       let status = sender;
       let newObj = { date, text, status };
       this.contacts[this.currentContact].messages.push(newObj);
-      Vue.nextTick(function () {
-        app.windowScroll();
-      })
+      this.windowScroll();
       this.resetMessage();
     },
     sendMessage: function (sender) {
@@ -223,7 +221,9 @@ var app = new Vue({
       this.search != '' ? this.search = '' : '';
     },
     windowScroll: function () {
-      document.getElementById("conversation_scroll").scrollTo(0,document.getElementById("conversation_scroll").scrollHeight);
+      Vue.nextTick(function () {
+        document.getElementById("conversation_scroll").scrollTo(0,document.getElementById("conversation_scroll").scrollHeight);
+      })
     }
   },
   created: function () {

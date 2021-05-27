@@ -69,7 +69,7 @@
             <div class="people" v-if="!checkString(this.search)">
 
                 <div v-for="(contact, index) in contacts" v-if="contact.visible"
-                    @click="saveDraft(), resetMessage(), resetSearch(), setCurrentContact(index), restoreDraft()"
+                    @click="saveDraft(), resetMessage(), resetSearch(), setCurrentContact(index), restoreDraft(), windowScroll()"
                     :class="{'active' : index === currentContact}" class="contact_chat">
 
                         <img :src="getObjImage(contact)" :alt="contact.name">
